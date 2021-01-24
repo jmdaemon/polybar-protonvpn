@@ -1,8 +1,9 @@
 # Protonvpn module for polybar
 ## Preview
-VPN active: ![vpn](./preview/regular.png)
 
-VPN (with Secure Core) active: ![securecore](./preview/securecore.png)
+| VPN active  | VPN active (with Secure Core) |
+| --- | --- |
+| ![vpn](./preview/regular.png) | ![securecore](./preview/securecore.png) |
 
 ## Dependencies
 * [nerdfont](https://github.com/ryanoasis/nerd-fonts) (lock emoji)
