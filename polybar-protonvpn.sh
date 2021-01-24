@@ -1,12 +1,12 @@
 #!/bin/bash
 
-output=$(protonvpn s)
-connection_status=$(head -n 1 <<< $output | awk '{print $2}')
+output=$(protonvpn s | awk '{print $2}')
+connection_status=$(awk 'FNR == 1 {print}' <<< $output)
 
 if [ "$connection_status" = 'Connected' ]
 then
-  server=$(sed '4q;d' <<< $output | awk '{print $2}')
-  echo " $server"
+  server=$(awk 'FNR == 4 {print}' <<< $output)
+  echo "$server"
 else
   echo ""
 fi
