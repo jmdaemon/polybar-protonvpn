@@ -1,8 +1,8 @@
 #!/bin/bash
 
-output=$(protonvpn s | awk '{print $2}')
+status=$(protonvpn s | awk '{print $2}')
 
-connection_status=$(awk 'FNR == 1 {print}' <<< $output)
+connection_status=$(awk 'FNR == 1 {print}' <<< $status)
 
 if [ "$connection_status" = 'Connected' ]
 then
@@ -10,10 +10,10 @@ then
   cache_filename="protonvpn-status-cache"
   rm /tmp/$cache_filename.*
   tmpfile=$(mktemp /tmp/$cache_filename.XXXXX)
-  echo "$output" > $tmpfile
+  echo "$status" > $tmpfile
 
-  server=$(awk 'FNR == 4 {print}' <<< $output)
-  emoji=$([ $(awk 'FNR == 5 {print}' <<< $output) == "Secure-Core" ] && echo "🔐" || echo "🔒")
+  server=$(awk 'FNR == 4 {print}' <<< $status)
+  emoji=$([ $(awk 'FNR == 5 {print}' <<< $status) == "Secure-Core" ] && echo "🔐" || echo "🔒")
   echo "$emoji $server"
 else
   echo ""
