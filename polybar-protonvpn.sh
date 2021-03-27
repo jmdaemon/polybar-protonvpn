@@ -8,7 +8,10 @@ if [ "$connection_status" = 'Connected' ]
 then
   # create cache for `notify-send` because `protonvpn s` is very slow
   cache_filename="protonvpn-status-cache"
-  rm /tmp/$cache_filename.*
+  if test -f "/tmp/$cache_filename.*"; then
+    rm /tmp/$cache_filename.*
+  fi
+
   tmpfile=$(mktemp /tmp/$cache_filename.XXXXX)
   echo "$status" > $tmpfile
 
