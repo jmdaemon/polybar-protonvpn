@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-notify-send "$(cat /tmp/protonvpn-status-cache.*)"
+notify-send "$(cat /tmp/protonvpn-status-cache)"
